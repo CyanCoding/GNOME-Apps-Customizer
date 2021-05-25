@@ -87,6 +87,7 @@ void MainWindow::on_locateApp_clicked() {
 // When the dialog OK button is clicked
 void MainWindow::on_dialogButtons_accepted() {
     // TODO: Have the program figure out which tab is opened
+    // TODO: Fix the app not removing the .desktop file
 
     // Get values from UI elements
     QString name = ui->nameBox->text();
@@ -102,5 +103,29 @@ void MainWindow::on_dialogButtons_accepted() {
 
     // Writes the data to a .desktop file
     writeDesktopFile(fileContents, getDesktopPath((std::string)name.toUtf8().constData(), homedir));
+
+    ui->nameBox->setText("");
+    ui->appBox->setText("");
+    ui->iconBox->setText("");
+    ui->terminalCheckbox->setChecked(false);
+
+    // Set the question mark icon
+    QImage questionMarkIcon(":/Resources/question.png");
+    ui->iconImage->setPixmap(getResizedPixmap(questionMarkIcon));
+
+}
+
+// Clear the values when the user clicks the Dialog Cancel button
+void MainWindow::on_dialogButtons_rejected() {
+    // TODO: Have the program figure out which tab is opened
+
+    ui->nameBox->setText("");
+    ui->appBox->setText("");
+    ui->iconBox->setText("");
+    ui->terminalCheckbox->setChecked(false);
+
+    // Set the question mark icon
+    QImage questionMarkIcon(":/Resources/question.png");
+    ui->iconImage->setPixmap(getResizedPixmap(questionMarkIcon));
 }
 

@@ -22,6 +22,8 @@ private slots:
 
     void on_dialogButtons_accepted();
 
+    void on_dialogButtons_rejected();
+
 private:
     Ui::MainWindow *ui;
 };
