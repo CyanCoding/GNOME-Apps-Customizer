@@ -20,7 +20,7 @@ private slots:
 
     void on_locateApp_clicked();
 
-    void on_createButton_clicked();
+    void on_createButton_accepted();
 
 private:
     Ui::MainWindow *ui;
