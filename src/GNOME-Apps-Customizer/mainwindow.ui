@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>674</width>
-    <height>466</height>
+    <height>491</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -48,19 +48,6 @@
      <attribute name="title">
       <string>Create</string>
      </attribute>
-     <widget class="QDialogButtonBox" name="createButton">
-      <property name="geometry">
-       <rect>
-        <x>490</x>
-        <y>350</y>
-        <width>166</width>
-        <height>25</height>
-       </rect>
-      </property>
-      <property name="standardButtons">
-       <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
-      </property>
-     </widget>
      <widget class="QLabel" name="label_3">
       <property name="geometry">
        <rect>
@@ -187,16 +174,19 @@
      </widget>
     </widget>
    </widget>
-  </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>674</width>
-     <height>22</height>
-    </rect>
-   </property>
+   <widget class="QDialogButtonBox" name="dialogButtons">
+    <property name="geometry">
+     <rect>
+      <x>500</x>
+      <y>440</y>
+      <width>166</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="standardButtons">
+     <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+    </property>
+   </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionHome">

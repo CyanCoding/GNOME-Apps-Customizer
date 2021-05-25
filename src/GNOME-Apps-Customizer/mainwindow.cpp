@@ -53,7 +53,8 @@ MainWindow::~MainWindow() {
     delete ui;
 }
 
-
+// When the button next to the Icon box is clicked.
+// Shows a file dialog and lets the user pick a .png
 void MainWindow::on_locateIcon_clicked() {
     QString selectedIcon = QFileDialog::getOpenFileName(this, "Choose Icon", homedir, "PNG Image (*.png)");
 
@@ -74,7 +75,8 @@ void MainWindow::on_locateIcon_clicked() {
 
 }
 
-
+// When the button next to the App box is clicked.
+// Shows a file dialog and lets the user pick an executable
 void MainWindow::on_locateApp_clicked() {
     QString selectedApp = QFileDialog::getOpenFileName(this, "Choose App", homedir);
 
@@ -82,9 +84,10 @@ void MainWindow::on_locateApp_clicked() {
     ui->appBox->setText(selectedApp);
 }
 
+// When the dialog OK button is clicked
+void MainWindow::on_dialogButtons_accepted() {
+    // TODO: Have the program figure out which tab is opened
 
-// When the createButton OK button is clicked
-void MainWindow::on_createButton_accepted() {
     // Get values from UI elements
     QString name = ui->nameBox->text();
     QString appLocation = ui->appBox->text();
