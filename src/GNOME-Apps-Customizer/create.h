@@ -1,6 +1,9 @@
 #ifndef CREATE_H
 #define CREATE_H
 
+#include <QPixmap>
+#include <QImage>
+
 #include <iostream>
 
 // Gets the .desktop file path
@@ -11,5 +14,8 @@ std::string getDesktopValues(std::string exec, std::string icon, std::string nam
 
 // Writes to the .desktop file
 void writeDesktopFile(std::string text, std::string path);
+
+// Creates a resized useable Pixmap from a QImage
+QPixmap getResizedPixmap(QImage image);
 
 #endif // CREATE_H

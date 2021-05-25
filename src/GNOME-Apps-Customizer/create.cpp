@@ -62,3 +62,16 @@ void writeDesktopFile(std::string text, std::string path) {
 
     file.close();
 }
+
+// Creates a resized useable Pixmap from a QImage
+QPixmap getResizedPixmap(QImage image) {
+    QImage resized = image.scaled(41, 41, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+
+    QPixmap pixmap = QPixmap::fromImage(resized);
+
+    return pixmap;
+}
+
+
+
+

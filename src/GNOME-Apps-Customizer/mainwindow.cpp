@@ -22,13 +22,6 @@
 char *homedir;
 std::string desktopFilePath;
 
-void setIcon(QImage image, QLabel *label) {
-    QImage resized = image.scaled(41, 41, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-
-    QPixmap pixmap = QPixmap::fromImage(resized);
-
-    label->setPixmap(pixmap);
-}
 
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWindow) {
     ui->setupUi(this);
@@ -39,7 +32,7 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
 
     // Set the question mark icon
     QImage questionMarkIcon(":/Resources/question.png");
-    setIcon(questionMarkIcon, ui->iconImage);
+    ui->iconImage->setPixmap(getResizedPixmap(questionMarkIcon));
 }
 
 // Gets the file name from the file path
@@ -69,13 +62,13 @@ void MainWindow::on_locateIcon_clicked() {
 
     if (selectedIcon != "") {
         // Set the app icon
-        QImage questionMarkIcon(selectedIcon);
-        setIcon(questionMarkIcon, ui->iconImage);
+        QImage appIcon(selectedIcon);
+        ui->iconImage->setPixmap(getResizedPixmap(appIcon));
     }
     else {
         // Set the question mark icon
         QImage questionMarkIcon(":/Resources/question.png");
-        setIcon(questionMarkIcon, ui->iconImage);
+        ui->iconImage->setPixmap(getResizedPixmap(questionMarkIcon));
     }
 
 
