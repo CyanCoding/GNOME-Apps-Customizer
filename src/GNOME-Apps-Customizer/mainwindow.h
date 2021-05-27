@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QTreeWidgetItem>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -23,6 +24,8 @@ private slots:
     void on_dialogButtons_accepted();
 
     void on_dialogButtons_rejected();
+
+    void on_treeWidget_itemClicked(QTreeWidgetItem *item, int column);
 
 private:
     Ui::MainWindow *ui;

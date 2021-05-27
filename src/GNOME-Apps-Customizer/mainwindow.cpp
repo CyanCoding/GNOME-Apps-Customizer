@@ -9,7 +9,8 @@
 #include <QFileDialog>
 #include <QStandardPaths>
 #include <QPixmap>
-#include <QTreeView>
+#include <QTreeWidget>
+#include <QTreeWidgetItem>
 
 // System includes
 #include <iostream>
@@ -150,5 +151,10 @@ void MainWindow::on_dialogButtons_rejected() {
     // Set the question mark icon
     QImage questionMarkIcon(":/Resources/question.png");
     ui->iconImage->setPixmap(getResizedPixmap(questionMarkIcon));
+}
+
+void MainWindow::on_treeWidget_itemClicked(QTreeWidgetItem *item, int column) {
+    QString data = item->text(0);
+    ui->appDetailsBox->setPlainText(data);
 }
 
