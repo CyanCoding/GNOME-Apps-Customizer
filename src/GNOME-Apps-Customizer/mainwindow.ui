@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>674</width>
-    <height>491</height>
+    <height>442</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -172,20 +172,20 @@
        <string>Open in terminal</string>
       </property>
      </widget>
+     <widget class="QDialogButtonBox" name="dialogButtons">
+      <property name="geometry">
+       <rect>
+        <x>490</x>
+        <y>350</y>
+        <width>166</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="standardButtons">
+       <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+      </property>
+     </widget>
     </widget>
-   </widget>
-   <widget class="QDialogButtonBox" name="dialogButtons">
-    <property name="geometry">
-     <rect>
-      <x>500</x>
-      <y>440</y>
-      <width>166</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="standardButtons">
-     <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
-    </property>
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
