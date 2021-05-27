@@ -36,12 +36,29 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
     QImage questionMarkIcon(":/Resources/question.png");
     ui->iconImage->setPixmap(getResizedPixmap(questionMarkIcon));
 
-    // We need root access to view/modify some .desktop files
-    // We request that here
-    //system("pkexec mkdir /bin/myDir");
-
     // Set up the QTreeView
-    locateDesktopFiles();
+    std::vector<std::string> desktopFiles = locateDesktopFiles(homedir);
+
+    getDesktopFileDetails(desktopFiles[0]);
+
+    for (int i = 0; i < desktopFiles.size(); i++) { // Make a QTreeWidgetItem for each desktop file
+        QTreeWidgetItem *item = new QTreeWidgetItem();
+        try {
+            std::map<std::string, std::string> dictionary = getDesktopFileDetails(desktopFiles[i]);
+
+            if (dictionary.empty()) {
+                continue;
+            }
+
+            item->setText(0, dictionary.find("Name")->second.c_str());
+
+            ui->treeWidget->addTopLevelItem(item);
+        }  catch (std::exception& ex) {
+            continue;
+        }
+
+    }
+
 }
 
 // Gets the file name from the file path

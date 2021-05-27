@@ -13,12 +13,16 @@ QMAKE_CXXFLAGS += -std=c++17
 SOURCES += \
     create.cpp \
     home.cpp \
+    iniparser/dictionary.c \
+    iniparser/iniparser.c \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     create.h \
     home.h \
+    iniparser/dictionary.h \
+    iniparser/iniparser.h \
     mainwindow.h
 
 FORMS += \

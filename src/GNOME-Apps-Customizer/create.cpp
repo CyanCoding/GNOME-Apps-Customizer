@@ -1,6 +1,7 @@
 #include "create.h"
 
 #include <fstream>
+#include "iniparser/iniparser.h"
 
 
 // Gets the .desktop file path

@@ -3,8 +3,12 @@
 
 #include <iostream>
 #include <vector>
+#include <map>
+#include "iniparser/iniparser.h"
 
-void locateDesktopFiles();
+std::vector<std::string> locateDesktopFiles(std::string homeDir);
+
+std::map<std::string, std::string> getDesktopFileDetails(std::string path);
 
 
 #endif // HOME_H
