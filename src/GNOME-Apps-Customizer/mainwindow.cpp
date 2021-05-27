@@ -2,12 +2,14 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "create.h"
+#include "home.h"
 
 // Qt includes
 #include <QFile>
 #include <QFileDialog>
 #include <QStandardPaths>
 #include <QPixmap>
+#include <QTreeView>
 
 // System includes
 #include <iostream>
@@ -33,6 +35,13 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
     // Set the question mark icon
     QImage questionMarkIcon(":/Resources/question.png");
     ui->iconImage->setPixmap(getResizedPixmap(questionMarkIcon));
+
+    // We need root access to view/modify some .desktop files
+    // We request that here
+    //system("pkexec mkdir /bin/myDir");
+
+    // Set up the QTreeView
+    locateDesktopFiles();
 }
 
 // Gets the file name from the file path
@@ -86,7 +95,6 @@ void MainWindow::on_locateApp_clicked() {
 
 // When the dialog OK button is clicked
 void MainWindow::on_dialogButtons_accepted() {
-    // TODO: Have the program figure out which tab is opened
     // TODO: Fix the app not removing the .desktop file
 
     // Get values from UI elements
@@ -117,8 +125,6 @@ void MainWindow::on_dialogButtons_accepted() {
 
 // Clear the values when the user clicks the Dialog Cancel button
 void MainWindow::on_dialogButtons_rejected() {
-    // TODO: Have the program figure out which tab is opened
-
     ui->nameBox->setText("");
     ui->appBox->setText("");
     ui->iconBox->setText("");

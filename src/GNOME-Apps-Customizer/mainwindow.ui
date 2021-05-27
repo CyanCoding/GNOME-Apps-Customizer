@@ -27,12 +27,37 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="listTab">
      <attribute name="title">
       <string>Home</string>
      </attribute>
+     <widget class="QTreeWidget" name="treeWidget">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>361</width>
+        <height>391</height>
+       </rect>
+      </property>
+      <column>
+       <property name="text">
+        <string>Applications</string>
+       </property>
+      </column>
+      <item>
+       <property name="text">
+        <string>Calculator</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Characters</string>
+       </property>
+      </item>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab">
      <attribute name="title">

@@ -12,11 +12,13 @@ QMAKE_CXXFLAGS += -std=c++17
 
 SOURCES += \
     create.cpp \
+    home.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     create.h \
+    home.h \
     mainwindow.h
 
 FORMS += \
