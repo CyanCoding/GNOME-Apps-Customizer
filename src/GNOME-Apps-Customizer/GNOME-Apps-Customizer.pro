@@ -39,4 +39,5 @@ DISTFILES += \
     Resources/question.png
 
 RESOURCES += \
+    Resources.qrc \
     Resources.qrc

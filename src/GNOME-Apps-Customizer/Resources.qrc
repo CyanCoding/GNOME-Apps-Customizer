@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/">
+        <file>Resources/org.gnome.Boxes.png</file>
         <file>Resources/question.png</file>
     </qresource>
 </RCC>
