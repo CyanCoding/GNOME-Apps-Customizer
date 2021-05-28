@@ -62,7 +62,17 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
             data.exec = dictionary.find("Exec")->second;
             data.iconPath = dictionary.find("Icon")->second;
             data.isTerminal = data.stringToBool(dictionary.find("Terminal")->second);
-            data.resizedIcon = data.returnResizedIcon(dictionary.find("Icon")->second.c_str());
+
+            QIcon icon = QIcon::fromTheme(data.iconPath.c_str(), QIcon(":/Resources/question.png"));
+            data.resizedIcon = data.returnResizedIcon_icon(icon);
+
+            if (data.resizedIcon.width() == 0) {
+                // I'm not entirely sure why this happens, but with some icons
+                // I think it finds the icon but isn't able to shrink it to a
+                // 61x61 pixmap, meaning it turns out to be a 0x0 blank image
+                // instead of the backup question mark image.
+                data.resizedIcon = data.returnResizedIcon_string(":/Resources/question.png");
+            }
 
             dataMap[data.name] = data; // Write the app's data to a map for later retrieval
             // TODO: If two apps have the same name, they'll overwrite each other's data!!
@@ -169,6 +179,9 @@ void MainWindow::on_dialogButtons_rejected() {
 
 void MainWindow::on_treeWidget_itemClicked(QTreeWidgetItem *item, int column) {
     AppData data = dataMap.find((std::string)item->text(0).toUtf8())->second;
+
+    ui->appName->setText(data.name.c_str());
+    ui->appIcon->setPixmap(data.resizedIcon);
 
     ui->appDetailsBox->setPlainText(data.iconPath.c_str());
 }

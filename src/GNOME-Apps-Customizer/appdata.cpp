@@ -1,10 +1,18 @@
 #include "appdata.h"
 
+#include <QIcon>
+
+QPixmap AppData::returnResizedIcon_icon(QIcon icon) {
+    QPixmap pixmap = icon.pixmap(icon.actualSize(QSize(61, 61)));
+
+    return pixmap;
+}
+
 // Takes the path of a .png file and converts it to a proper-sized pixmap
-QPixmap AppData::returnResizedIcon(QString path) {
+QPixmap AppData::returnResizedIcon_string(QString path) {
     QImage image(path);
 
-    QImage resized = image.scaled(41, 41, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    QImage resized = image.scaled(61, 61, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 
     QPixmap pixmap = QPixmap::fromImage(resized);
 

@@ -16,7 +16,8 @@ public:
 
     QPixmap resizedIcon;
 
-    QPixmap returnResizedIcon(QString path);
+    QPixmap returnResizedIcon_icon(QIcon icon);
+    QPixmap returnResizedIcon_string(QString path);
     bool stringToBool(std::string boolean);
 };
 
