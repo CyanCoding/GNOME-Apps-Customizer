@@ -22,27 +22,15 @@
 #include <string>
 #include <algorithm>
 #include <cctype>
+#include <thread>
 
 char *homedir;
 std::string desktopFilePath;
 std::map<std::string, AppData> dataMap;
 
-
-MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWindow) {
-    ui->setupUi(this);
-
-    // Get the user's home directory, like '/home/jason'
-    struct passwd *pw = getpwuid(getuid());
-    homedir = pw->pw_dir;
-
-    // Set the question mark icon
-    QImage questionMarkIcon(":/Resources/question.png");
-    ui->iconImage->setPixmap(getResizedPixmap(questionMarkIcon));
-
+void appLoadThread(QTreeWidget* treeWidget) {
     // Set up the QTreeView
     std::vector<std::string> desktopFiles = locateDesktopFiles(homedir);
-
-    getDesktopFileDetails(desktopFiles[0]);
 
     for (int i = 0; i < desktopFiles.size(); i++) { // Make a QTreeWidgetItem for each desktop file
         QTreeWidgetItem *item = new QTreeWidgetItem();
@@ -78,12 +66,28 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
             dataMap[data.name] = data; // Write the app's data to a map for later retrieval
             // TODO: If two apps have the same name, they'll overwrite each other's data!!
 
-            ui->treeWidget->addTopLevelItem(item);
+            treeWidget->addTopLevelItem(item);
         }  catch (std::exception& ex) {
             continue;
         }
 
     }
+}
+
+
+MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWindow) {
+    ui->setupUi(this);
+
+    // Get the user's home directory, like '/home/jason'
+    struct passwd *pw = getpwuid(getuid());
+    homedir = pw->pw_dir;
+
+    // Set the question mark icon
+    QImage questionMarkIcon(":/Resources/question.png");
+    ui->iconImage->setPixmap(getResizedPixmap(questionMarkIcon));
+
+    std::thread thread(appLoadThread, ui->treeWidget);
+    thread.detach();
 
 }
 
