@@ -25,6 +25,7 @@
 
 char *homedir;
 std::string desktopFilePath;
+std::map<std::string, AppData> dataMap;
 
 
 MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWindow) {
@@ -62,6 +63,9 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
             data.iconPath = dictionary.find("Icon")->second;
             data.isTerminal = data.stringToBool(dictionary.find("Terminal")->second);
             data.resizedIcon = data.returnResizedIcon(dictionary.find("Icon")->second.c_str());
+
+            dataMap[data.name] = data; // Write the app's data to a map for later retrieval
+            // TODO: If two apps have the same name, they'll overwrite each other's data!!
 
             ui->treeWidget->addTopLevelItem(item);
         }  catch (std::exception& ex) {
@@ -164,7 +168,8 @@ void MainWindow::on_dialogButtons_rejected() {
 }
 
 void MainWindow::on_treeWidget_itemClicked(QTreeWidgetItem *item, int column) {
-    QString data = item->text(0);
-    ui->appDetailsBox->setPlainText(data);
+    AppData data = dataMap.find((std::string)item->text(0).toUtf8())->second;
+
+    ui->appDetailsBox->setPlainText(data.iconPath.c_str());
 }
 
