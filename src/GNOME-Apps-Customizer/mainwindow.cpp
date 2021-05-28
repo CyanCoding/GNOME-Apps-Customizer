@@ -3,6 +3,7 @@
 #include "ui_mainwindow.h"
 #include "create.h"
 #include "home.h"
+#include "appdata.cpp"
 
 // Qt includes
 #include <QFile>
@@ -52,6 +53,15 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
             }
 
             item->setText(0, dictionary.find("Name")->second.c_str());
+
+            // Fill in the class values
+            AppData data;
+            data.name = dictionary.find("Name")->second;
+            data.comment = dictionary.find("Comment")->second;
+            data.exec = dictionary.find("Exec")->second;
+            data.iconPath = dictionary.find("Icon")->second;
+            data.isTerminal = data.stringToBool(dictionary.find("Terminal")->second);
+            data.resizedIcon = data.returnResizedIcon(dictionary.find("Icon")->second.c_str());
 
             ui->treeWidget->addTopLevelItem(item);
         }  catch (std::exception& ex) {

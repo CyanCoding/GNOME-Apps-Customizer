@@ -11,6 +11,7 @@ QMAKE_CXXFLAGS += -std=c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    appdata.cpp \
     create.cpp \
     home.cpp \
     iniparser/dictionary.c \
@@ -19,6 +20,7 @@ SOURCES += \
     mainwindow.cpp
 
 HEADERS += \
+    appdata.h \
     create.h \
     home.h \
     iniparser/dictionary.h \
