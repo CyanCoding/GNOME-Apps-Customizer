@@ -32,6 +32,7 @@ void appLoadThread(QTreeWidget* treeWidget) {
     // Set up the QTreeView
     std::vector<std::string> desktopFiles = locateDesktopFiles(homedir);
 
+
     for (int i = 0; i < desktopFiles.size(); i++) { // Make a QTreeWidgetItem for each desktop file
         QTreeWidgetItem *item = new QTreeWidgetItem();
         try {
@@ -67,11 +68,13 @@ void appLoadThread(QTreeWidget* treeWidget) {
             // TODO: If two apps have the same name, they'll overwrite each other's data!!
 
             treeWidget->addTopLevelItem(item);
+            treeWidget->sortItems(0, Qt::AscendingOrder); // Sort alphabetically
         }  catch (std::exception& ex) {
             continue;
         }
 
     }
+
 }
 
 
