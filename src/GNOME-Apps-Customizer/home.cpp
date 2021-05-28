@@ -54,7 +54,6 @@ std::map<std::string, std::string> getDesktopFileDetails(std::string path) {
     }
 
     const char* results = iniparser_getstring(ini, "Desktop Entry:Name", "NULL");
-    std::cout << results << ":" << path << std::endl;
     dictionary["Name"] = results;
 
     results = iniparser_getstring(ini, "Desktop Entry:Comment", "NULL");
