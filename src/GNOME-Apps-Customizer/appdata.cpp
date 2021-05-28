@@ -1,6 +1,8 @@
 #include "appdata.h"
 
 #include <QIcon>
+#include <QtSvg/QSvgRenderer>
+#include <QPainter>
 
 // Takes an icon and converts it to a 61x61 pixmap
 QPixmap AppData::returnResizedIcon_icon(QIcon icon) {
@@ -23,8 +25,10 @@ QPixmap AppData::returnResizedIcon_string(QString path) {
 // If an icon is un-found, search for it from the compiled-in icons
 // TODO: Some icons aren't even searching, like thunderbolt doesn't search
 QPixmap searchIcon(QString path, std::string name) {
-    std::string search = ":/Resources/" + (std::string)path.toUtf8() + ".png";
+    std::string search = ":/Resources/app-icons/" + (std::string)path.toUtf8() + ".png";
+    std::string search2 = ":/Resources/app-icons/" + (std::string)path.toUtf8() + ".svg";
 
+    // Search for a .png
     QImage image(search.c_str());
     QImage resized = image.scaled(61, 61, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 
@@ -34,12 +38,21 @@ QPixmap searchIcon(QString path, std::string name) {
         return pixmap;
     }
     else {
-        QImage question(":/Resources/question.png");
-        resized = question.scaled(61, 61, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        // Search for a .svg instead
+        pixmap = QIcon(search2.c_str()).pixmap(61, 61);
 
-        pixmap = QPixmap::fromImage(resized);
+        if (pixmap.width() != 0) {
+            return pixmap;
+        }
+        else {
+            // Last resort, put a question mark icon
+            QImage question(":/Resources/question.png");
+            resized = question.scaled(61, 61, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 
-        return pixmap;
+            pixmap = QPixmap::fromImage(resized);
+
+            return pixmap;
+        }
     }
 }
 
