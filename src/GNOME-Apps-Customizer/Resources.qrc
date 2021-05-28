@@ -2,5 +2,7 @@
     <qresource prefix="/">
         <file>Resources/org.gnome.Boxes.png</file>
         <file>Resources/question.png</file>
+        <file>Resources/thunderbolt.png</file>
+        <file>Resources/nixnote2.png</file>
     </qresource>
 </RCC>

@@ -21,7 +21,8 @@ QPixmap AppData::returnResizedIcon_string(QString path) {
 }
 
 // If an icon is un-found, search for it from the compiled-in icons
-QPixmap searchIcon(QString path) {
+// TODO: Some icons aren't even searching, like thunderbolt doesn't search
+QPixmap searchIcon(QString path, std::string name) {
     std::string search = ":/Resources/" + (std::string)path.toUtf8() + ".png";
 
     QImage image(search.c_str());

@@ -71,7 +71,7 @@ MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWin
                 // I think it finds the icon but isn't able to shrink it to a
                 // 61x61 pixmap, meaning it turns out to be a 0x0 blank image
                 // instead of the backup question mark image.
-                data.resizedIcon = searchIcon(data.iconPath.c_str());
+                data.resizedIcon = searchIcon(data.iconPath.c_str(), data.name);
                 // data.resizedIcon = data.returnResizedIcon_string(":/Resources/question.png");
             }
 
