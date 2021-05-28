@@ -52,7 +52,7 @@ void appLoadThread(QTreeWidget* treeWidget) {
             data.iconPath = dictionary.find("Icon")->second;
             data.isTerminal = data.stringToBool(dictionary.find("Terminal")->second);
 
-            QIcon icon = QIcon::fromTheme(data.iconPath.c_str(), QIcon(":/Resources/question.png"));
+            QIcon icon = QIcon::fromTheme(data.iconPath.c_str()/**, QIcon(":/Resources/question.png")**/);
             data.resizedIcon = data.returnResizedIcon_icon(icon);
 
             if (data.resizedIcon.width() == 0) {

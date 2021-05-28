@@ -4,5 +4,9 @@
         <file>Resources/question.png</file>
         <file>Resources/thunderbolt.png</file>
         <file>Resources/nixnote2.png</file>
+        <file>Resources/AppImageLauncher.png</file>
+        <file>Resources/camera-photo.png</file>
+        <file>Resources/debreate.png</file>
+        <file>Resources/appointment-soon.png</file>
     </qresource>
 </RCC>
