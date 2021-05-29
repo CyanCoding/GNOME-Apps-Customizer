@@ -1,4 +1,5 @@
 QT       += core gui
+QT += svg
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -39,6 +40,4 @@ DISTFILES += \
     Resources/question.png
 
 RESOURCES += \
-    Resources.qrc \
-    Resources.qrc \
-    Resources.qrc
+    resources.qrc

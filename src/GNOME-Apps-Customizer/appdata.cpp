@@ -1,7 +1,7 @@
 #include "appdata.h"
 
 #include <QIcon>
-#include <QtSvg/QSvgRenderer>
+#include <QSvgRenderer>
 #include <QPainter>
 
 // Takes an icon and converts it to a 61x61 pixmap
@@ -39,7 +39,15 @@ QPixmap searchIcon(QString path, std::string name) {
     }
     else {
         // Search for a .svg instead
-        pixmap = QIcon(search2.c_str()).pixmap(61, 61);
+        QSvgRenderer renderer = QString(search2.c_str());
+        // QSvgRenderer renderer = QString("://Resources/app-icons/androidstudio.svg");
+        QImage svgImage(61, 61, QImage::Format_ARGB32);
+        //TODO: Images look grainy
+
+        QPainter painter(&svgImage);
+        renderer.render(&painter);
+
+        pixmap = QPixmap::fromImage(svgImage);
 
         if (pixmap.width() != 0) {
             return pixmap;
